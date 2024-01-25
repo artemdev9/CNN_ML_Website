@@ -39,6 +39,16 @@ h1 {
     background-color: white;
     outline: none;
     margin-bottom: 10px;
+    
+}
+
+#file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
 #file:hover {
@@ -73,28 +83,7 @@ input[type="button"]:hover {
     align-items: center;
     justify-content: center;
     background-color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    #file {
-        width: 80%;
-    }
-
-    #predictionResult {
-        width: 80%;
-    }
-}
-
-
-
-#file {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
+    font-size: larger;
 }
 
 #fileLabel {
@@ -129,3 +118,17 @@ input[type="button"]:hover {
     display: flex;
     gap: 10px;
 }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #file {
+        width: 80%;
+    }
+
+    #predictionResult {
+        width: 80%;
+    }
+}
+
+
+
