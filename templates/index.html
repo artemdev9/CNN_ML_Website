@@ -13,7 +13,10 @@
             <div id="imagePreview">Click here or drag an image to upload</div>
             <input type="file" name="file" id="file" accept="image/*" required onchange="displayImage(this)">
         </label>
-        <input type="button" value="Predict" id="submit">
+        <div>
+            <input type="button" value="Predict" id="submit">
+            <input type="button" value="Delete" id="delete">
+        </div>
     </form>    
     <div id="predictionResult"></div>
     
@@ -43,7 +46,15 @@
                     }
                 });
             });
+        
+            $("#delete").click(function () {
+                $('#imagePreview').empty(); // Remove the image
+                $('#file').val(''); // Reset the file input
+                $("#imagePreview").text("Click here or drag an image to upload");
+                $('#predictionResult').empty();
+            });
         });
+
     </script>
 </body>
 </html>
