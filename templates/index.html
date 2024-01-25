@@ -1,37 +1,36 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Upload</title>
-</head>
-<body>
-    <h1>Upload an Image</h1>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" id="file" accept="image/*">
-        <input type="submit" value="Upload">
-    </form>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Image Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>Upload an Image for Prediction</h1>
     <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" name="file" id="file" accept="image/*" required>
+        <label for="file" id="fileLabel">
+            <div id="imagePreview">Click here or drag an image to upload</div>
+            <input type="file" name="file" id="file" accept="image/*" required onchange="displayImage(this)">
+        </label>
         <input type="button" value="Predict" id="submit">
-    </form>
+    </form>    
     <div id="predictionResult"></div>
-
+    
     <script>
-        $(document).ready(function(){
-            $("#submit").click(function(){
+        function displayImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').html('<img src="' + e.target.result + '" alt="Image preview"/>');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(document).ready(function () {
+            $("#submit").click(function () {
                 var formData = new FormData($("#uploadForm")[0]);
                 $.ajax({
                     url: '/predict',
@@ -48,4 +47,3 @@
     </script>
 </body>
 </html>
-

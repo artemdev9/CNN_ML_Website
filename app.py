@@ -66,7 +66,22 @@ def predict():
     prediction = model.predict(image)
     # Format the prediction as needed
 
-    return jsonify({'prediction': str(prediction)})
+    class_labels = ['Bicycle', 'Cars', 'Deer', 'Mountains']  
+    # Assuming 'prediction' is your model's prediction
+    prediction = prediction
+ 
+    # Convert to percentages
+    prediction_percentages = [value * 100 for value in prediction[0]]
+
+    # Find the index of the highest prediction percentage
+    max_index = np.argmax(prediction_percentages)
+
+    # Get the corresponding class label and percentage
+    most_likely_class = class_labels[max_index]
+    most_likely_percentage = prediction_percentages[max_index]
+    prediction_str =  f"{most_likely_class}"
+
+    return jsonify({'prediction': str(prediction_str)})
 
 
 if __name__ == '__main__':
