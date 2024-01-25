@@ -1,1 +1,6 @@
 venv/
+.gcloudignore
+Procfile
+app.yaml
+.vscode/
+__pycache__/
