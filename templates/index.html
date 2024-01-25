@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,4 +12,40 @@
         <input type="submit" value="Upload">
     </form>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Prediction</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Upload an Image for Prediction</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" accept="image/*" required>
+        <input type="button" value="Predict" id="submit">
+    </form>
+    <div id="predictionResult"></div>
+
+    <script>
+        $(document).ready(function(){
+            $("#submit").click(function(){
+                var formData = new FormData($("#uploadForm")[0]);
+                $.ajax({
+                    url: '/predict',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        $("#predictionResult").html('Prediction: ' + response.prediction);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 </html>
+
