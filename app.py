@@ -56,4 +56,5 @@ def allowed_file(filename):
 
 if __name__ == '__main__':
     # Turn off debug mode in production!
-    app.run(debug=False)
+    app.run(debug=False,host="0.0.0.0", port=8080)
+
